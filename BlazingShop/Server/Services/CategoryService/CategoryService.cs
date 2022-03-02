@@ -10,11 +10,11 @@ namespace BlazingShop.Server.Services.CategoryService
                  new Category { Id = 3, Name = "Video Games", Url = "video-games", Icon = "aperture" }
              };
 
-        //    private readonly DataContext _context;
-        //    public CategoryService(DataContext context)
-        //    {
-        //        _context = context;
-        //    }
+        //private readonly DataContext _context;
+        //public CategoryService(DataContext context)
+        //{
+        //    _context = context;
+        //}
 
         public async Task<List<Category>> GetCategories()
         {
@@ -24,8 +24,9 @@ namespace BlazingShop.Server.Services.CategoryService
 
         public async Task<Category> GetCategoryByUrl(string categoryUrl)
         {
-            //return await _context.Categories.FirstOrDefaultAsync(c => c.Url.ToLower().Equals(categoryUrl.ToLower()));
             return null;
+            //return await _context.Categories.FirstOrDefaultAsync(c => c.Url.ToLower().Equals(categoryUrl.ToLower()));
+            //return await _context.Categories.FirstOrDefaultAsync(c => c.Url.ToLower().Equals(categoryUrl.ToLower()));
         }
     }
 }

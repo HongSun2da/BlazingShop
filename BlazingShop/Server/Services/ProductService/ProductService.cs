@@ -5,7 +5,7 @@ namespace BlazingShop.Server.Services.ProductService
 {
     public class ProductService : IProductService
     {
-        //private readonly ICategoryService _categoryService;
+        private readonly ICategoryService _categoryService;
         //private readonly DataContext _context;
 
         //public ProductService(ICategoryService categoryService, DataContext context)
@@ -59,7 +59,9 @@ namespace BlazingShop.Server.Services.ProductService
 
         public async Task<List<Product>> GetProductsByCategory(string categoryUrl)
         {
-            return Products;
+            Category category = await _categoryService.GetCategoryByUrl(categoryUrl);
+            return Products.Where(p => p.CategoryId == category.Id).ToList();
+            //return await _context.Products.Include(p => p.Variants).Where(p => p.CategoryId == category.Id).ToListAsync();
         }
 
         public async Task<List<Product>> SearchProducts(string searchText)

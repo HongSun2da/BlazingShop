@@ -16,23 +16,23 @@ namespace BlazingShop.Client.Services.ProductService
             _http = http;
         }
 
-        public async Task LoadProducts()
-        {
-            Products = await _http.GetFromJsonAsync<List<Product>>("api/Product");
-        }
-
-        //public async Task LoadProducts(string categoryUrl = null)
+        //public async Task LoadProducts()
         //{
-        //    if (categoryUrl == null)
-        //    {
-        //        Products = await _http.GetFromJsonAsync<List<Product>>("api/Product");
-        //    }
-        //    else
-        //    {
-        //        Products = await _http.GetFromJsonAsync<List<Product>>($"api/Product/Category/{categoryUrl}");
-        //    }
-        //    OnChange.Invoke();
+        //    Products = await _http.GetFromJsonAsync<List<Product>>("api/Product");
         //}
+
+        public async Task LoadProducts(string categoryUrl = null)
+        {
+            if (categoryUrl == null)
+            {
+                Products = await _http.GetFromJsonAsync<List<Product>>("api/Product");
+            }
+            else
+            {
+                Products = await _http.GetFromJsonAsync<List<Product>>($"api/Product/Category/{categoryUrl}");
+            }
+            OnChange.Invoke();
+        }
 
         //public async Task<Product> GetProduct(int id)
         //{

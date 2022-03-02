@@ -4,24 +4,23 @@ using Microsoft.AspNetCore.Components;
 
 namespace BlazingShop.Client.Shared
 {
-    public partial class ProductList
+    public partial class ProductList : IDisposable
     {
-        [Parameter]
-        public int? CategoryId { get; set; } = null;
+        //[Parameter]
+        //public int? CategoryId { get; set; } = null;
 
         [Inject]
         private IProductService ProductService { get; set; }
 
-        protected override async Task OnInitializedAsync()
+        protected override void OnInitialized()
         {
-            await ProductService.LoadProducts();
+            ProductService.OnChange += StateHasChanged;
         }
 
-
-        //public void Dispose()
-        //{
-        //    ProductService.OnChange -= StateHasChanged;
-        //}
+        public void Dispose()
+        {
+            ProductService.OnChange -= StateHasChanged;
+        }
 
         //private string GetPriceText(Product product)
         //{
