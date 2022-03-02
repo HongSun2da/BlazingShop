@@ -9,11 +9,12 @@ namespace BlazingShop.Client.Shared
         [Parameter]
         public int? CategoryId { get; set; } = null;
 
-        private IProductService productService { get; set; } = new ProductService();
+        [Inject]
+        private IProductService ProductService { get; set; }
 
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
-            productService.LoadProducts();
+            await ProductService.LoadProducts();
         }
 
 

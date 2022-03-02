@@ -1,15 +1,16 @@
 ﻿using BlazingShop.Client.Services.CategoryService;
+using Microsoft.AspNetCore.Components;
 
 namespace BlazingShop.Client.Shared
 {
     public partial class NavMenu
     {
-        private ICategoryService CategoryService { get; set; } = new CategoryService();
+        [Inject]
+        private ICategoryService CategoryService { get; set; }
 
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
-            CategoryService.LoadCategories();
+            await CategoryService.LoadCategories();
         }
-
     }
 }

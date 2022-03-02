@@ -6,7 +6,7 @@ namespace BlazingShop.Client.Pages
 {
     public partial class ProductDetails
     {
-        private IProductService ProductService { get; set; } = new ProductService();
+        private IProductService ProductService { get; set; }
 
         private Product product = new Product();
 

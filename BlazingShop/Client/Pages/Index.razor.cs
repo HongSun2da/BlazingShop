@@ -11,16 +11,17 @@ namespace BlazingShop.Client.Pages
 
         private Category? category = null;
 
-        public ICategoryService CategoryService { get; set; } = new CategoryService();
+        [Inject]
+        public ICategoryService CategoryService { get; set; }
 
-        protected override void OnInitialized()
+        //protected override void OnInitialized()
+        //{
+
+        //}
+
+        protected override async Task OnParametersSetAsync()
         {
-
-        }
-
-        protected override void OnParametersSet()
-        {
-            CategoryService.LoadCategories();
+            await CategoryService.LoadCategories();
 
             if (CategoryUrl != null)
             {
@@ -31,5 +32,6 @@ namespace BlazingShop.Client.Pages
                 category = null;
             }
         }
+
     }
 }
