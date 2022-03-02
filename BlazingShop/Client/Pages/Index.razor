@@ -1,0 +1,14 @@
+﻿@page "/"
+@page "/{categoryurl}"
+
+@if (category != null)
+{    <h1>Welcom to the @category.Name section!</h1>
+    <ProductList CategoryId="@category.Id" />
+}
+else
+{
+    <h1>Welcom to Blazing Shop!</h1>
+    <ProductList/>
+}
+
+
